@@ -31,22 +31,20 @@ These instructions will help you get a copy of the project up and running on you
 - PHP >= 7.4
 - Composer
 - MySQL or any other database supported by Laravel
-- Node.js and npm (for frontend dependencies)
 
 ### Installation
 
 1. **Clone the repository:**
 
     ```bash
-    git clone https://github.com/your-username/e-commerce.git
+    git clone https://github.com/akmaalll/e-commerce.git
     cd e-commerce
     ```
 
 2. **Install dependencies:**
 
     ```bash
-    composer install
-    npm install
+    composer install or composer update
     ```
 
 3. **Copy the `.env.example` file to `.env` and modify the environment variables:**
@@ -73,15 +71,8 @@ These instructions will help you get a copy of the project up and running on you
 
     ```bash
     php artisan db:seed
-    ```
 
-7. **Build frontend assets:**
-
-    ```bash
-    npm run dev
-    ```
-
-8. **Start the development server:**
+7. **Start the development server:**
 
     ```bash
     php artisan serve
