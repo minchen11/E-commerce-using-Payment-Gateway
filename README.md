@@ -19,7 +19,6 @@ This is a comprehensive e-commerce application built using the Laravel framework
 - Product listing and detailed view
 - Shopping cart functionality
 - Order management
-- Payment gateway integration
 - Admin panel for managing products and orders
 
 ## Getting Started
