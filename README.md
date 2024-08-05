@@ -29,6 +29,7 @@ These instructions will help you get a copy of the project up and running on you
 
 - PHP >= 7.4
 - Composer
+- Laravel 8.0
 - MySQL or any other database supported by Laravel
 
 ### Installation
