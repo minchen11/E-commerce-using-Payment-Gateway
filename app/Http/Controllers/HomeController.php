@@ -168,8 +168,6 @@ class HomeController extends Controller
                 'id_order' => $id,
                 'id_produk' => $request->id_produk[$i],
                 'jumlah' => $request->jumlah[$i],
-                'size' => $request->size[$i],
-                'color' => $request->color[$i],
                 'total' => $request->total[$i],
                 'created_at' => date('Y-m-d H:i:s')
             ]);
@@ -184,7 +182,7 @@ class HomeController extends Controller
     {
         $about = About::first();
         $orders = Order::where('id_member', Auth::guard('webmember')->user()->id)->orderBy('id', 'desc')->first();
-        dd($orders);
+        // dd($orders);
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
@@ -216,6 +214,13 @@ class HomeController extends Controller
 
     public function payments(Request $request)
     {
+        $request->validate([
+            'jumlah'               => "required",
+            'no_rekening'               => "required",
+            'atas_nama'               => "required",
+            'detail_alamat'               => "required",
+        ]);
+
         Payment::create([
             'id_order' => $request->id_order,
             'id_member' => Auth::guard('webmember')->user()->id,

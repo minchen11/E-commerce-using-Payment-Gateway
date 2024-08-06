@@ -23,10 +23,6 @@
                             <th>Nama Barang</th>
                             <th>Harga</th>
                             <th>Diskon</th>
-                            <th>Bahan</th>
-                            <th>Sku</th>
-                            <th>Ukuran</th>
-                            <th>Warna</th>
                             <th>Gambar</th>
                             <th>Aksi</th>
                         </tr>
@@ -81,26 +77,6 @@
                                     <input type="number" class="form-control" name="diskon" placeholder="Diskon">
                                 </div>
                                 <div class="form-group">
-                                    <label for="">Bahan</label>
-                                    <input type="text" class="form-control" name="bahan" placeholder="Bahan">
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Tags</label>
-                                    <input type="text" class="form-control" name="tags" placeholder="Tags">
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Sku</label>
-                                    <input type="text" class="form-control" name="sku" placeholder="Sku">
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Warna</label>
-                                    <input type="text" class="form-control" name="warna" placeholder="Warna">
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Ukuran</label>
-                                    <input type="text" class="form-control" name="ukuran" placeholder="Ukuran">
-                                </div>
-                                <div class="form-group">
                                     <label for="">Deskripsi</label>
                                     <textarea name="deskripsi" placeholder="Deskripsi" class="form-control" id="" cols="30" rows="10"
                                         required></textarea>
@@ -145,10 +121,6 @@
                             <td>${val.nama_barang}</td>
                             <td>${val.harga}</td>
                             <td>${val.diskon}</td>
-                            <td>${val.bahan}</td>
-                            <td>${val.sku}</td>
-                            <td>${val.ukuran}</td>
-                            <td>${val.warna}</td>
                             <td><img src="/uploads/${val.gambar}" width="150"></td>
                             <td>
                                 <a href="#modal-form" data-id="${val.id}" class="btn btn-warning modal-ubah">Edit</a>
@@ -231,11 +203,6 @@
                     $('input[name="nama_barang"]').val(data.nama_barang);
                     $('input[name="harga"]').val(data.harga);
                     $('input[name="diskon"]').val(data.diskon);
-                    $('input[name="bahan"]').val(data.bahan);
-                    $('input[name="tags"]').val(data.tags);
-                    $('input[name="sku"]').val(data.sku);
-                    $('input[name="warna"]').val(data.warna);
-                    $('input[name="ukuran"]').val(data.ukuran);
                     $('textarea[name="deskripsi"]').val(data.deskripsi);
                 });
 

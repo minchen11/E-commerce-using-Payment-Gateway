@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Aug 05, 2024 at 09:08 AM
+-- Generation Time: Aug 06, 2024 at 07:25 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.3.9
 
@@ -59,8 +59,6 @@ CREATE TABLE `carts` (
   `id_member` int NOT NULL,
   `id_barang` int NOT NULL,
   `jumlah` int NOT NULL,
-  `size` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `color` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `total` int NOT NULL,
   `is_checkout` int NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -71,10 +69,19 @@ CREATE TABLE `carts` (
 -- Dumping data for table `carts`
 --
 
-INSERT INTO `carts` (`id`, `id_member`, `id_barang`, `jumlah`, `size`, `color`, `total`, `is_checkout`, `created_at`, `updated_at`) VALUES
-(1, 2, 3, 2, 'S', 'Hitam', 5186, 1, '2023-01-14 03:19:40', '2023-01-17 04:41:29'),
-(2, 2, 5, 1, 'S', 'Hitam', 25597, 1, '2023-01-14 03:27:39', '2023-01-17 04:41:29'),
-(4, 3, 21, 1, 'l', 'ss', 1, 1, '2024-08-05 00:56:18', '2024-08-05 00:56:23');
+INSERT INTO `carts` (`id`, `id_member`, `id_barang`, `jumlah`, `total`, `is_checkout`, `created_at`, `updated_at`) VALUES
+(1, 2, 3, 2, 5186, 1, '2023-01-14 03:19:40', '2023-01-17 04:41:29'),
+(2, 2, 5, 1, 25597, 1, '2023-01-14 03:27:39', '2023-01-17 04:41:29'),
+(4, 3, 21, 1, 1, 1, '2024-08-05 00:56:18', '2024-08-06 11:24:19'),
+(5, 3, 7, 1, 21844, 1, '2024-08-06 02:09:52', '2024-08-06 11:24:19'),
+(6, 3, 2, 1, 50623, 1, '2024-08-06 02:10:25', '2024-08-06 11:24:19'),
+(7, 3, 2, 2, 101246, 1, '2024-08-06 02:12:36', '2024-08-06 11:24:19'),
+(8, 3, 3, 1, 2593, 1, '2024-08-06 02:15:17', '2024-08-06 11:24:19'),
+(9, 3, 3, 1, 2593, 1, '2024-08-06 02:23:35', '2024-08-06 11:24:19'),
+(10, 3, 2, 1, 50623, 1, '2024-08-06 02:27:18', '2024-08-06 11:24:19'),
+(11, 3, 4, 1, 31901, 1, '2024-08-06 02:29:59', '2024-08-06 11:24:19'),
+(12, 3, 4, 1, 31901, 1, '2024-08-06 02:57:38', '2024-08-06 11:24:19'),
+(13, 3, 2, 1, 50623, 1, '2024-08-06 11:20:35', '2024-08-06 11:24:19');
 
 -- --------------------------------------------------------
 
@@ -199,8 +206,17 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `id_member`, `invoice`, `grand_total`, `created_at`, `updated_at`, `status`) VALUES
-(2, 2, 23011729, 40783, '2023-01-17 04:41:29', '2023-01-17 04:51:22', 'Selesai'),
-(3, 3, 24080523, 1, '2024-08-05 00:56:23', NULL, 'Baru');
+(8, 3, 24080641, 2593, '2024-08-06 02:23:41', NULL, 'Baru'),
+(9, 3, 24080623, 2593, '2024-08-06 02:26:23', NULL, 'Baru'),
+(10, 3, 24080622, 50623, '2024-08-06 02:27:22', NULL, 'Baru'),
+(11, 3, 24080606, 31901, '2024-08-06 02:30:06', '2024-08-06 02:30:39', 'Selesai'),
+(12, 3, 24080603, 31901, '2024-08-06 02:58:03', NULL, 'Baru'),
+(13, 3, 24080653, 50623, '2024-08-06 11:20:53', NULL, 'Baru'),
+(14, 3, 24080627, 50623, '2024-08-06 11:21:27', NULL, 'Baru'),
+(15, 3, 24080605, 50623, '2024-08-06 11:22:05', NULL, 'Baru'),
+(16, 3, 24080602, 50623, '2024-08-06 11:23:02', NULL, 'Baru'),
+(17, 3, 24080654, 50623, '2024-08-06 11:23:54', NULL, 'Baru'),
+(18, 3, 24080618, 50623, '2024-08-06 11:24:18', NULL, 'Baru');
 
 -- --------------------------------------------------------
 
@@ -213,8 +229,6 @@ CREATE TABLE `order_details` (
   `id_order` int NOT NULL,
   `id_produk` int NOT NULL,
   `jumlah` int NOT NULL,
-  `size` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `color` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `total` int NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -224,10 +238,20 @@ CREATE TABLE `order_details` (
 -- Dumping data for table `order_details`
 --
 
-INSERT INTO `order_details` (`id`, `id_order`, `id_produk`, `jumlah`, `size`, `color`, `total`, `created_at`, `updated_at`) VALUES
-(3, 2, 3, 2, 'S', 'Hitam', 5186, '2023-01-17 11:52:28', NULL),
-(4, 2, 5, 1, 'S', 'Hitam', 25597, '2023-01-16 17:00:00', NULL),
-(5, 3, 21, 1, 'l', 'ss', 1, '2024-08-05 00:56:23', NULL);
+INSERT INTO `order_details` (`id`, `id_order`, `id_produk`, `jumlah`, `total`, `created_at`, `updated_at`) VALUES
+(3, 2, 3, 2, 5186, '2023-01-17 11:52:28', NULL),
+(4, 2, 5, 1, 25597, '2023-01-16 17:00:00', NULL),
+(5, 3, 21, 1, 1, '2024-08-05 00:56:23', NULL),
+(6, 4, 7, 1, 21844, '2024-08-06 02:09:57', NULL),
+(7, 5, 2, 1, 50623, '2024-08-06 02:10:34', NULL),
+(8, 6, 2, 2, 101246, '2024-08-06 02:12:43', NULL),
+(9, 7, 3, 1, 2593, '2024-08-06 02:21:25', NULL),
+(10, 8, 3, 1, 2593, '2024-08-06 02:23:41', NULL),
+(11, 9, 3, 1, 2593, '2024-08-06 02:26:23', NULL),
+(12, 10, 2, 1, 50623, '2024-08-06 02:27:22', NULL),
+(13, 11, 4, 1, 31901, '2024-08-06 02:30:06', NULL),
+(14, 12, 4, 1, 31901, '2024-08-06 02:58:03', NULL),
+(15, 18, 2, 1, 50623, '2024-08-06 11:24:19', NULL);
 
 -- --------------------------------------------------------
 
@@ -266,7 +290,13 @@ CREATE TABLE `payments` (
 
 INSERT INTO `payments` (`id`, `id_order`, `jumlah`, `detail_alamat`, `status`, `no_rekening`, `atas_nama`, `created_at`, `updated_at`, `id_member`) VALUES
 (2, 2, 40783, 'Ut modi sed eligendi', 'DITERIMA', '1234-1234-1234-1234', 'Kang Kasep', '2023-01-17 04:41:49', '2023-01-17 04:45:58', 2),
-(3, 3, 1, 's', 'MENUNGGU', 's', 's', '2024-08-05 00:57:12', '2024-08-05 00:57:12', 3);
+(3, 3, 1, 's', 'DITERIMA', 's', 's', '2024-08-05 00:57:12', '2024-08-06 01:32:21', 3),
+(4, 3, 22, 's', 'MENUNGGU', '1234567', 'aa', '2024-08-06 02:13:25', '2024-08-06 02:13:25', 3),
+(5, 8, 2593, 's', 'MENUNGGU', '1234567', 's', '2024-08-06 02:26:58', '2024-08-06 02:26:58', 3),
+(6, 10, 50623, 's', 'MENUNGGU', '1234567', 's', '2024-08-06 02:29:48', '2024-08-06 02:29:48', 3),
+(7, 11, 31901, 's', 'MENUNGGU', '1234567', 's', '2024-08-06 02:30:30', '2024-08-06 02:30:30', 3),
+(8, 12, 31901, 's', 'MENUNGGU', '1234567', 's', '2024-08-06 03:14:04', '2024-08-06 03:14:04', 3),
+(9, 18, 50623, 'asd', 'MENUNGGU', 'asd', 'ads', '2024-08-06 11:24:32', '2024-08-06 11:24:32', 3);
 
 -- --------------------------------------------------------
 
@@ -301,11 +331,6 @@ CREATE TABLE `products` (
   `deskripsi` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `harga` int NOT NULL,
   `diskon` int NOT NULL,
-  `bahan` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `tags` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `sku` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `ukuran` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `warna` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -314,27 +339,27 @@ CREATE TABLE `products` (
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`id`, `id_kategori`, `id_subkategori`, `nama_barang`, `gambar`, `deskripsi`, `harga`, `diskon`, `bahan`, `tags`, `sku`, `ukuran`, `warna`, `created_at`, `updated_at`) VALUES
-(2, 1, 3, 'Lorem Ipsum Dolor Sit Amet', 'shop_image_2.jpg', 'Lorem Ipsum Dolor Sit Amet', 50623, 0, 'Lorem Ipsum Dolor', 'Lorem,Ipsum,Dolor,Sit,Amet', 'E7KEpD8l', 'S,M,L,XL', 'Hitam,Biru,Kuning,Putih,Hijau', '2023-01-10 03:05:55', '2023-01-10 03:05:55'),
-(3, 1, 2, 'Lorem Ipsum Dolor Sit Amet 3', 'shop_image_3.jpg', 'Lorem Ipsum Dolor Sit Amet', 2593, 0, 'Lorem Ipsum Dolor', 'Lorem,Ipsum,Dolor,Sit,Amet', 'Wb2zzEY4', 'S,M,L,XL', 'Hitam,Biru,Kuning,Putih,Hijau', '2023-01-10 03:05:55', '2023-01-10 03:05:55'),
-(4, 3, 2, 'Lorem Ipsum Dolor Sit Amet', 'shop_image_4.jpg', 'Lorem Ipsum Dolor Sit Amet', 31901, 0, 'Lorem Ipsum Dolor', 'Lorem,Ipsum,Dolor,Sit,Amet', 'L3er4N2e', 'S,M,L,XL', 'Hitam,Biru,Kuning,Putih,Hijau', '2023-01-10 03:05:55', '2023-01-10 03:05:55'),
-(5, 3, 1, 'Lorem Ipsum Dolor Sit Amet', 'shop_image_5.jpg', 'Lorem Ipsum Dolor Sit Amet', 25597, 0, 'Lorem Ipsum Dolor', 'Lorem,Ipsum,Dolor,Sit,Amet', 'KfnpmhpA', 'S,M,L,XL', 'Hitam,Biru,Kuning,Putih,Hijau', '2023-01-10 03:05:55', '2023-01-10 03:05:55'),
-(6, 1, 4, 'Lorem Ipsum Dolor Sit Amet', 'shop_image_6.jpg', 'Lorem Ipsum Dolor Sit Amet', 7292, 0, 'Lorem Ipsum Dolor', 'Lorem,Ipsum,Dolor,Sit,Amet', 'mZWsY5kU', 'S,M,L,XL', 'Hitam,Biru,Kuning,Putih,Hijau', '2023-01-10 03:05:55', '2023-01-10 03:05:55'),
-(7, 1, 1, 'Lorem Ipsum Dolor Sit Amet', 'shop_image_7.jpg', 'Lorem Ipsum Dolor Sit Amet', 21844, 0, 'Lorem Ipsum Dolor', 'Lorem,Ipsum,Dolor,Sit,Amet', 'WWzvn9w9', 'S,M,L,XL', 'Hitam,Biru,Kuning,Putih,Hijau', '2023-01-10 03:05:55', '2023-01-10 03:05:55'),
-(8, 1, 3, 'Lorem Ipsum Dolor Sit Amet', 'shop_image_8.jpg', 'Lorem Ipsum Dolor Sit Amet', 26767, 0, 'Lorem Ipsum Dolor', 'Lorem,Ipsum,Dolor,Sit,Amet', 'pa0ALhWR', 'S,M,L,XL', 'Hitam,Biru,Kuning,Putih,Hijau', '2023-01-10 03:05:55', '2023-01-10 03:05:55'),
-(9, 3, 4, 'Lorem Ipsum Dolor Sit Amet', 'shop_image_9.jpg', 'Lorem Ipsum Dolor Sit Amet', 83003, 0, 'Lorem Ipsum Dolor', 'Lorem,Ipsum,Dolor,Sit,Amet', 'AmPWm4Zb', 'S,M,L,XL', 'Hitam,Biru,Kuning,Putih,Hijau', '2023-01-10 03:05:55', '2023-01-10 03:05:55'),
-(10, 3, 3, 'Lorem Ipsum Dolor Sit Amet', 'shop_image_10.jpg', 'Lorem Ipsum Dolor Sit Amet', 35310, 0, 'Lorem Ipsum Dolor', 'Lorem,Ipsum,Dolor,Sit,Amet', 'flyu7ynV', 'S,M,L,XL', 'Hitam,Biru,Kuning,Putih,Hijau', '2023-01-10 03:05:55', '2023-01-10 03:05:55'),
-(11, 3, 2, 'Lorem Ipsum Dolor Sit Amet', 'shop_image_11.jpg', 'Lorem Ipsum Dolor Sit Amet', 83740, 0, 'Lorem Ipsum Dolor', 'Lorem,Ipsum,Dolor,Sit,Amet', 'XFwIWqEH', 'S,M,L,XL', 'Hitam,Biru,Kuning,Putih,Hijau', '2023-01-10 03:05:55', '2023-01-10 03:05:55'),
-(12, 2, 2, 'Lorem Ipsum Dolor Sit Amet', 'shop_image_12.jpg', 'Lorem Ipsum Dolor Sit Amet', 86644, 0, 'Lorem Ipsum Dolor', 'Lorem,Ipsum,Dolor,Sit,Amet', 'p9ZDFY5A', 'S,M,L,XL', 'Hitam,Biru,Kuning,Putih,Hijau', '2023-01-10 03:05:55', '2023-01-10 03:05:55'),
-(13, 2, 4, 'Lorem Ipsum Dolor Sit Amet', 'shop_image_13.jpg', 'Lorem Ipsum Dolor Sit Amet', 33158, 0, 'Lorem Ipsum Dolor', 'Lorem,Ipsum,Dolor,Sit,Amet', 'clmqD88C', 'S,M,L,XL', 'Hitam,Biru,Kuning,Putih,Hijau', '2023-01-10 03:05:55', '2023-01-10 03:05:55'),
-(14, 3, 4, 'Lorem Ipsum Dolor Sit Amet', 'shop_image_14.jpg', 'Lorem Ipsum Dolor Sit Amet', 90575, 0, 'Lorem Ipsum Dolor', 'Lorem,Ipsum,Dolor,Sit,Amet', 'OfFYFu9A', 'S,M,L,XL', 'Hitam,Biru,Kuning,Putih,Hijau', '2023-01-10 03:05:55', '2023-01-10 03:05:55'),
-(15, 1, 2, 'Lorem Ipsum Dolor Sit Amet', 'shop_image_15.jpg', 'Lorem Ipsum Dolor Sit Amet', 9340, 0, 'Lorem Ipsum Dolor', 'Lorem,Ipsum,Dolor,Sit,Amet', '656cIdMl', 'S,M,L,XL', 'Hitam,Biru,Kuning,Putih,Hijau', '2023-01-10 03:05:55', '2023-01-10 03:05:55'),
-(16, 1, 2, 'Lorem Ipsum Dolor Sit Amet', 'shop_image_16.jpg', 'Lorem Ipsum Dolor Sit Amet', 29006, 0, 'Lorem Ipsum Dolor', 'Lorem,Ipsum,Dolor,Sit,Amet', 'hmxSQ9Y8', 'S,M,L,XL', 'Hitam,Biru,Kuning,Putih,Hijau', '2023-01-10 03:05:55', '2023-01-10 03:05:55'),
-(17, 2, 3, 'Lorem Ipsum Dolor Sit Amet', 'shop_image_17.jpg', 'Lorem Ipsum Dolor Sit Amet', 84958, 0, 'Lorem Ipsum Dolor', 'Lorem,Ipsum,Dolor,Sit,Amet', 'gHR6tlFo', 'S,M,L,XL', 'Hitam,Biru,Kuning,Putih,Hijau', '2023-01-10 03:05:55', '2023-01-10 03:05:55'),
-(18, 3, 1, 'Lorem Ipsum Dolor Sit Amet', 'shop_image_18.jpg', 'Lorem Ipsum Dolor Sit Amet', 55518, 0, 'Lorem Ipsum Dolor', 'Lorem,Ipsum,Dolor,Sit,Amet', 'ohbJTaZn', 'S,M,L,XL', 'Hitam,Biru,Kuning,Putih,Hijau', '2023-01-10 03:05:55', '2023-01-10 03:05:55'),
-(19, 2, 3, 'Lorem Ipsum Dolor Sit Amet', 'shop_image_19.jpg', 'Lorem Ipsum Dolor Sit Amet', 61436, 0, 'Lorem Ipsum Dolor', 'Lorem,Ipsum,Dolor,Sit,Amet', 'I6pilXU3', 'S,M,L,XL', 'Hitam,Biru,Kuning,Putih,Hijau', '2023-01-10 03:05:55', '2023-01-10 03:05:55'),
-(20, 2, 3, 'Lorem Ipsum Dolor Sit Amet', 'shop_image_20.jpg', 'Lorem Ipsum Dolor Sit Amet', 7652, 0, 'Lorem Ipsum Dolor', 'Lorem,Ipsum,Dolor,Sit,Amet', 'JEJlBcTj', 'S,M,L,XL', 'Hitam,Biru,Kuning,Putih,Hijau', '2023-01-10 03:05:55', '2023-01-10 03:05:55'),
-(21, 1, 3, 'ss', '17228479072.png', 'ss', 1, 1, 'ss', 'ss', 'ss', 'l', 'ss', '2024-08-05 00:51:47', '2024-08-05 00:51:47');
+INSERT INTO `products` (`id`, `id_kategori`, `id_subkategori`, `nama_barang`, `gambar`, `deskripsi`, `harga`, `diskon`, `created_at`, `updated_at`) VALUES
+(2, 1, 3, 'Lorem Ipsum Dolor Sit Amet', 'shop_image_2.jpg', 'Lorem Ipsum Dolor Sit Amet', 50623, 0, '2023-01-10 03:05:55', '2023-01-10 03:05:55'),
+(3, 1, 2, 'Lorem Ipsum Dolor Sit Amet 3', 'shop_image_3.jpg', 'Lorem Ipsum Dolor Sit Amet', 2593, 0, '2023-01-10 03:05:55', '2023-01-10 03:05:55'),
+(4, 3, 2, 'Lorem Ipsum Dolor Sit Amet', 'shop_image_4.jpg', 'Lorem Ipsum Dolor Sit Amet', 31901, 0, '2023-01-10 03:05:55', '2023-01-10 03:05:55'),
+(5, 3, 1, 'Lorem Ipsum Dolor Sit Amet', 'shop_image_5.jpg', 'Lorem Ipsum Dolor Sit Amet', 25597, 0, '2023-01-10 03:05:55', '2023-01-10 03:05:55'),
+(6, 1, 4, 'Lorem Ipsum Dolor Sit Amet', 'shop_image_6.jpg', 'Lorem Ipsum Dolor Sit Amet', 7292, 0, '2023-01-10 03:05:55', '2023-01-10 03:05:55'),
+(7, 1, 1, 'Lorem Ipsum Dolor Sit Amet', 'shop_image_7.jpg', 'Lorem Ipsum Dolor Sit Amet', 21844, 0, '2023-01-10 03:05:55', '2023-01-10 03:05:55'),
+(8, 1, 3, 'Lorem Ipsum Dolor Sit Amet', 'shop_image_8.jpg', 'Lorem Ipsum Dolor Sit Amet', 26767, 0, '2023-01-10 03:05:55', '2023-01-10 03:05:55'),
+(9, 3, 4, 'Lorem Ipsum Dolor Sit Amet', 'shop_image_9.jpg', 'Lorem Ipsum Dolor Sit Amet', 83003, 0, '2023-01-10 03:05:55', '2023-01-10 03:05:55'),
+(10, 3, 3, 'Lorem Ipsum Dolor Sit Amet', 'shop_image_10.jpg', 'Lorem Ipsum Dolor Sit Amet', 35310, 0, '2023-01-10 03:05:55', '2023-01-10 03:05:55'),
+(11, 3, 2, 'Lorem Ipsum Dolor Sit Amet', 'shop_image_11.jpg', 'Lorem Ipsum Dolor Sit Amet', 83740, 0, '2023-01-10 03:05:55', '2023-01-10 03:05:55'),
+(12, 2, 2, 'Lorem Ipsum Dolor Sit Amet', 'shop_image_12.jpg', 'Lorem Ipsum Dolor Sit Amet', 86644, 0, '2023-01-10 03:05:55', '2023-01-10 03:05:55'),
+(13, 2, 4, 'Lorem Ipsum Dolor Sit Amet', 'shop_image_13.jpg', 'Lorem Ipsum Dolor Sit Amet', 33158, 0, '2023-01-10 03:05:55', '2023-01-10 03:05:55'),
+(14, 3, 4, 'Lorem Ipsum Dolor Sit Amet', 'shop_image_14.jpg', 'Lorem Ipsum Dolor Sit Amet', 90575, 0, '2023-01-10 03:05:55', '2023-01-10 03:05:55'),
+(15, 1, 2, 'Lorem Ipsum Dolor Sit Amet', 'shop_image_15.jpg', 'Lorem Ipsum Dolor Sit Amet', 9340, 0, '2023-01-10 03:05:55', '2023-01-10 03:05:55'),
+(16, 1, 2, 'Lorem Ipsum Dolor Sit Amet', 'shop_image_16.jpg', 'Lorem Ipsum Dolor Sit Amet', 29006, 0, '2023-01-10 03:05:55', '2023-01-10 03:05:55'),
+(17, 2, 3, 'Lorem Ipsum Dolor Sit Amet', 'shop_image_17.jpg', 'Lorem Ipsum Dolor Sit Amet', 84958, 0, '2023-01-10 03:05:55', '2023-01-10 03:05:55'),
+(18, 3, 1, 'Lorem Ipsum Dolor Sit Amet', 'shop_image_18.jpg', 'Lorem Ipsum Dolor Sit Amet', 55518, 0, '2023-01-10 03:05:55', '2023-01-10 03:05:55'),
+(19, 2, 3, 'Lorem Ipsum Dolor Sit Amet', 'shop_image_19.jpg', 'Lorem Ipsum Dolor Sit Amet', 61436, 0, '2023-01-10 03:05:55', '2023-01-10 03:05:55'),
+(20, 2, 3, 'Lorem Ipsum Dolor Sit Amet', 'shop_image_20.jpg', 'Lorem Ipsum Dolor Sit Amet', 7652, 0, '2023-01-10 03:05:55', '2023-01-10 03:05:55'),
+(21, 1, 3, 'ss', '17228479072.png', 'ss', 1, 1, '2024-08-05 00:51:47', '2024-08-05 00:51:47');
 
 -- --------------------------------------------------------
 
@@ -574,7 +599,7 @@ ALTER TABLE `about`
 -- AUTO_INCREMENT for table `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -604,19 +629,19 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `order_details`
 --
 ALTER TABLE `order_details`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`

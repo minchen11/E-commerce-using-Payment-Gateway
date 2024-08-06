@@ -8,6 +8,14 @@
         <div class="container relative">
             <div class="row">
 
+                @if ($errors->any())
+                    @foreach ($errors->all() as $e)
+                        <div class="alert alert-danger">
+                            {{ $e }}
+                        </div>
+                    @endforeach
+                @endif
+
                 <div class="ecommerce col-xs-12">
 
                     <form name="checkout" class="checkout ecommerce-checkout row" method="POST" action="/payments">
@@ -100,6 +108,7 @@
                     </form>
 
                 </div> <!-- end ecommerce -->
+
 
             </div> <!-- end row -->
         </div> <!-- end container -->
