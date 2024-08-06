@@ -87,6 +87,7 @@ class HomeController extends Controller
         $provinsi = json_decode($response);
         $carts = Cart::where('id_member', Auth::guard('webmember')->user()->id)->where('is_checkout', 0)->get();
         $cart_total = Cart::where('id_member', Auth::guard('webmember')->user()->id)->where('is_checkout', 0)->sum('total');
+        // dd($cart_total);
 
         return view('home.cart', compact('carts', 'provinsi', 'cart_total'));
     }
@@ -182,8 +183,8 @@ class HomeController extends Controller
     public function checkout()
     {
         $about = About::first();
-        $orders = Order::where('id_member', Auth::guard('webmember')->user()->id)->first();
-        // dd($orders);
+        $orders = Order::where('id_member', Auth::guard('webmember')->user()->id)->orderBy('id', 'desc')->first();
+        dd($orders);
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
