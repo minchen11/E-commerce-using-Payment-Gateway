@@ -244,7 +244,7 @@ class HomeController extends Controller
         \Midtrans\Config::$isProduction = config('midtrans.is_production');
         \Midtrans\Config::$isSanitized = true;
         \Midtrans\Config::$is3ds = true;
-
+        
         $params = array(
             'transaction_details' => array(
                 'order_id' => $request->id_order,
@@ -256,8 +256,9 @@ class HomeController extends Controller
                 'phone' => '',
             ),
         );
+        
         $snapToken = \Midtrans\Snap::getSnapToken($params);
-        // dd($snapToken);
+       //dd($snapToken);
         return view('home.invoice', compact('snapToken', 'orders', 'about'));
     }
 

@@ -63,7 +63,7 @@
                     </div>
                 </div>
             </li>
-            <li class="nav-item">
+            {{-- <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pesanan"
                     aria-expanded="true" aria-controls="pesanan">
                     <i class="fas fa-fw fa-shopping-cart"></i>
@@ -79,7 +79,7 @@
                         <a class="collapse-item" href="/pesanan/selesai">Pesanan Selesai</a>
                     </div>
                 </div>
-            </li>
+            </li> --}}
             <li class="nav-item">
                 <a class="nav-link" href="/payment">
                     <i class="fas fa-fw fa-credit-card"></i>
@@ -127,7 +127,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name }}</span>
                                 <img class="img-profile rounded-circle" src="/sbadmin2/img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
