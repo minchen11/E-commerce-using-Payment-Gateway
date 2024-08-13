@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PaymentController;
@@ -50,3 +51,6 @@ Route::group([
 
     Route::get('reports', [ReportConrtoller::class, 'get_reports']);
 });
+
+Route::post('/midtrans-callback', [HomeController::class, 'callback']);
+

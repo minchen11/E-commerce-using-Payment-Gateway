@@ -10,8 +10,7 @@
     <meta name="description" content="">
 
     <!-- Google Fonts -->
-    <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700%7COpen+Sans:400,400i,600,700'
-        rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700%7COpen+Sans:400,400i,600,700' rel='stylesheet'>
 
     <!-- Css -->
     <link rel="stylesheet" href="/front/css/bootstrap.min.css" />
@@ -68,9 +67,9 @@
                                     <div class="logo-wrap">
                                         <a href="/">
                                             @php
-                                            $about = App\Models\About::first();
+                                                $about = App\Models\About::first();
                                             @endphp
-                                            <img class="logo-dark2" src="/uploads/{{$about->logo}}" alt="logo">
+                                            <img class="logo-dark2" src="/uploads/{{ $about->logo }}" alt="logo">
                                         </a>
                                     </div>
                                 </div>
@@ -107,7 +106,7 @@
                                         </li>
 
                                         @php
-                                        $categories = App\Models\Category::all();
+                                            $categories = App\Models\Category::all();
                                         @endphp
 
                                         <li class="dropdown">
@@ -118,24 +117,25 @@
                                                     <div class="megamenu-wrap container">
                                                         <div class="row">
                                                             @foreach ($categories as $category)
-                                                            <div class="col-md-3 megamenu-item">
-                                                                <ul class="menu-list">
-                                                                    <li>
-                                                                        <span>{{$category->nama_kategori}}</span>
-                                                                    </li>
-                                                                    @php
-                                                                    $subcategories =
-                                                                    App\Models\Subcategory::where('id_kategori',
-                                                                    $category->id)->get();
-                                                                    @endphp
-                                                                    @foreach ($subcategories as $subcategory)
-                                                                    <li>
-                                                                        <a
-                                                                            href="/products/{{$subcategory->id}}">{{$subcategory->nama_subkategori}}</a>
-                                                                    </li>
-                                                                    @endforeach
-                                                                </ul>
-                                                            </div>
+                                                                <div class="col-md-3 megamenu-item">
+                                                                    <ul class="menu-list">
+                                                                        <li>
+                                                                            <span>{{ $category->nama_kategori }}</span>
+                                                                        </li>
+                                                                        @php
+                                                                            $subcategories = App\Models\Subcategory::where(
+                                                                                'id_kategori',
+                                                                                $category->id,
+                                                                            )->get();
+                                                                        @endphp
+                                                                        @foreach ($subcategories as $subcategory)
+                                                                            <li>
+                                                                                <a
+                                                                                    href="/products/{{ $subcategory->id }}">{{ $subcategory->nama_subkategori }}</a>
+                                                                            </li>
+                                                                        @endforeach
+                                                                    </ul>
+                                                                </div>
                                                             @endforeach
                                                         </div>
                                                     </div>
@@ -148,7 +148,7 @@
                                         </li>
 
                                         <li class="dropdown">
-                                            <a href="/contact">Contact Us</a>
+                                            <a href="/orders">Riwayat</a>
                                         </li>
 
                                         <!-- Mobile search -->
@@ -169,9 +169,9 @@
                                 <ul>
                                     <li class="nav-register">
                                         @if (Auth::guard('webmember')->check())
-                                        <a href="/profile">{{Auth::guard('webmember')->user()->nama_member}} </a>
+                                            <a href="/profile">{{ Auth::guard('webmember')->user()->nama_member }} </a>
                                         @else
-                                        <a href="/login_member">Login </a>
+                                            <a href="/login_member">Login </a>
                                         @endif
                                     </li>
                                     <li class="nav-search-wrap style-2 hidden-sm hidden-xs">
@@ -188,7 +188,7 @@
                                     </li>
                                     <li class="nav-register">
                                         @if (Auth::guard('webmember')->check())
-                                        <a href="/logout_member">Logout</a>
+                                            <a href="/logout_member">Logout</a>
                                         @endif
                                     </li>
                                 </ul>
@@ -212,7 +212,8 @@
                             <h4>Get the latest updates</h4>
                             <form class="relative newsletter-form">
                                 <input type="email" class="newsletter-input" placeholder="Enter your email">
-                                <input type="submit" class="btn btn-lg btn-dark newsletter-submit" value="Subscribe">
+                                <input type="submit" class="btn btn-lg btn-dark newsletter-submit"
+                                    value="Subscribe">
                             </form>
                         </div>
                     </div>

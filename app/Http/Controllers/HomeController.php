@@ -87,7 +87,7 @@ class HomeController extends Controller
         $provinsi = json_decode($response);
         $carts = Cart::where('id_member', Auth::guard('webmember')->user()->id)->where('is_checkout', 0)->get();
         $cart_total = Cart::where('id_member', Auth::guard('webmember')->user()->id)->where('is_checkout', 0)->sum('total');
-        // dd($cart_total);
+        // dd($carts);
 
         return view('home.cart', compact('carts', 'provinsi', 'cart_total'));
     }
@@ -183,6 +183,10 @@ class HomeController extends Controller
         $about = About::first();
         $orders = Order::where('id_member', Auth::guard('webmember')->user()->id)->orderBy('id', 'desc')->first();
         // dd($orders);
+
+
+        // dd($snapToken);
+
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
@@ -214,6 +218,10 @@ class HomeController extends Controller
 
     public function payments(Request $request)
     {
+        $about = About::first();
+
+        $orders = Order::where('id_member', Auth::guard('webmember')->user()->id)->orderBy('id', 'desc')->first();
+
         $request->validate([
             'jumlah'               => "required",
             'no_rekening'               => "required",
@@ -231,14 +239,49 @@ class HomeController extends Controller
             'atas_nama' => $request->atas_nama,
         ]);
 
-        return redirect('/orders');
+        // dd($request->all());
+        \Midtrans\Config::$serverKey = config('midtrans.server_key');
+        \Midtrans\Config::$isProduction = config('midtrans.is_production');
+        \Midtrans\Config::$isSanitized = true;
+        \Midtrans\Config::$is3ds = true;
+
+        $params = array(
+            'transaction_details' => array(
+                'order_id' => $request->id_order,
+                'gross_amount' => $request->jumlah,
+            ),
+            'customer_details' => array(
+                'first_name' => $request->atas_nama,
+                'last_name' => '',
+                'phone' => '',
+            ),
+        );
+        $snapToken = \Midtrans\Snap::getSnapToken($params);
+        // dd($snapToken);
+        return view('home.invoice', compact('snapToken', 'orders', 'about'));
     }
+
+    public function callback(Request $request)
+    {
+        $serverKey = config('midtrans.server_key');
+        $hashed = hash('sha512', $request->order_id . $request->status_code . $request->gross_amount . $serverKey);
+        if ($hashed == $request->signature_key) {
+            if ($request->transaction_status == 'settlement') {
+                $order = Payment::where('id_order', $request->order_id);
+                // dd($order);
+                $order->update(['status' => 'paid']);
+            }else if($request->transaction_status == 'pending'){
+                $order = Payment::where('id_order', $request->order_id);
+                $order->update(['status' => 'MENUNGGU']);
+            }
+        }
+    }
+
 
     public function orders()
     {
-        $orders = Order::where('id_member', Auth::guard('webmember')->user()->id)->get();
         $payments = Payment::where('id_member', Auth::guard('webmember')->user()->id)->get();
-        return view('home.orders', compact('orders', 'payments'));
+        return view('home.orders', compact('payments'));
     }
 
     public function pesanan_selesai(Order $order)

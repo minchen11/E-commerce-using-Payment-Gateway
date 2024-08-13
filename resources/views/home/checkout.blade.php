@@ -21,7 +21,7 @@
                     <form name="checkout" class="checkout ecommerce-checkout row" method="POST" action="/payments">
                         @csrf
                         <input type="hidden" name="id_order" value="{{ $orders->id }}">
-                        <div class="col-md-8" id="customer_details">
+                        <div class="col-md-12" id="customer_details">
                             <div>
                                 <h2 class="heading uppercase bottom-line full-grey mb-30">billing address</h2>
                                 <p class="form-row form-row-first validate-required ecommerce-invalid ecommerce-invalid-required-field"
@@ -65,46 +65,13 @@
 
                         </div> <!-- end col -->
 
+                        <div class="form-row place-order">
+                            <input type="submit" name="ecommerce_checkout_place_order" class="btn btn-lg btn-dark"
+                                id="place_order" value="Bayar Rong">
+                        </div>
+
                         <!-- Your Order -->
-                        <div class="col-md-4">
-                            <div class="order-review-wrap ecommerce-checkout-review-order" id="order_review">
-                                <h2 class="heading uppercase bottom-line full-grey">Your Order</h2>
-                                <table class="table shop_table ecommerce-checkout-review-order-table">
-                                    <tbody>
-                                        <tr class="order-total">
-                                            <th><strong>Order Total</strong></th>
-                                            <td>
-                                                <strong><span class="amount">Rp.
-                                                        {{ number_format($orders->grand_total) }}</span></strong>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-
-                                <div id="payment" class="ecommerce-checkout-payment">
-                                    <h2 class="heading uppercase bottom-line full-grey">Payment Method</h2>
-                                    <ul class="payment_methods methods">
-
-                                        <li class="payment_method_bacs">
-                                            <input id="payment_method_bacs" type="radio" class="input-radio"
-                                                name="payment_method" value="bacs" checked="checked">
-                                            <label for="payment_method_bacs">Direct Bank Transfer</label>
-                                            <div class="payment_box payment_method_bacs">
-                                                <p>Make your payment directly into our bank account. Please use your Order
-                                                    ID as the payment reference. Your order wont be shipped until the funds
-                                                    have cleared in our account.</p>
-                                                <p>Atas Nama : {{ $about->atas_nama }}</p>
-                                                <p>No Rekening : {{ $about->no_rekening }}</p>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                    <div class="form-row place-order">
-                                        <input type="submit" name="ecommerce_checkout_place_order"
-                                            class="btn btn-lg btn-dark" id="place_order" value="Place order">
-                                    </div>
-                                </div>
-                            </div>
-                        </div> <!-- end order review -->
+                        <!-- end order review -->
                     </form>
 
                 </div> <!-- end ecommerce -->
@@ -113,7 +80,10 @@
             </div> <!-- end row -->
         </div> <!-- end container -->
     </section> <!-- end checkout -->
+
+
 @endsection
+
 
 
 @push('js')

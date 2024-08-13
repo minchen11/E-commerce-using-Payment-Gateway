@@ -58,6 +58,7 @@ Route::get('/product/{id}', [HomeController::class, 'product']);
 Route::get('/cart', [HomeController::class, 'cart']);
 Route::get('/checkout', [HomeController::class, 'checkout']);
 Route::get('/orders', [HomeController::class, 'orders']);
+// Route::get('/invoice', [HomeController::class, 'invoice'])->name('invoice');
 Route::get('/about', [HomeController::class, 'about']);
 Route::get('/contact', [HomeController::class, 'contact']);
 Route::get('/faq', [HomeController::class, 'faq']);
