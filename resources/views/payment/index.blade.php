@@ -21,7 +21,7 @@
                         <th>No Rekening</th>
                         <th>Atas Nama</th>
                         <th>Status</th>
-                    
+                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody></tbody>
@@ -108,7 +108,9 @@
                             <td>${val.no_rekening}</td>
                             <td>${val.atas_nama}</td>
                             <td>${val.status}</td>
-                            
+                            <td>
+                                <a href="#modal-form" data-id="${val.id}" class="btn btn-warning modal-ubah">Edit</a>
+                            </td>
                         </tr>
                         `;
                 });

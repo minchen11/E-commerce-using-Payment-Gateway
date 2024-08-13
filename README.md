@@ -16,6 +16,7 @@ Project ini adalah aplikasi website E-commerce yang dibangun menggunakan Laravel
 - Autentikasi login dan registrasi ubtuk user
 - Pengelolaan produk dan gambar
 - Fitur admin untuk kontrol penuh atas konten
+- Fitur Payment Gateway
 
 ## Prerequisites
 
@@ -30,8 +31,7 @@ Project ini adalah aplikasi website E-commerce yang dibangun menggunakan Laravel
 1. **Clone the repository:**
 
     ```bash
-    git clone https://github.com/minchen11/E-commerce.git
-    cd e-commerce
+    git clone https://github.com/minchen11/E-commerce-using-Payment-Gateway.git
     ```
 
 2. **Install dependencies:**
