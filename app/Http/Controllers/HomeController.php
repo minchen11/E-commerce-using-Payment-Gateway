@@ -270,9 +270,6 @@ class HomeController extends Controller
                 $order = Payment::where('id_order', $request->order_id);
                 // dd($order);
                 $order->update(['status' => 'paid']);
-            }else if($request->transaction_status == 'pending'){
-                $order = Payment::where('id_order', $request->order_id);
-                $order->update(['status' => 'MENUNGGU']);
             }
         }
     }
