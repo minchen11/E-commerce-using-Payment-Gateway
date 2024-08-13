@@ -57,28 +57,57 @@ Project ini adalah aplikasi website E-commerce yang dibangun menggunakan Laravel
     DB_PASSWORD=
     ```
 
-5. **Generate an application key:**
+5. **Tambahkan Midtrans PHP SDK Untuk menambahkan library Midtrans PHP SDK, jalankan perintah berikut:**
+
+    ```bash
+    composer require midtrans/midtrans-php
+    ```
+
+6. **Buat akun Midtrans pada laman berikut:**
+
+    ```bash
+    https://dashboard.sandbox.midtrans.com/
+    ```
+
+7. **Tambahkan kode berikut pada file `.env`:**
+
+    ```bash
+    MIDTRANS_MERCHANT_ID = "dapat id key di https://dashboard.sandbox.midtrans.com/settings/config_info "
+    MIDTRANS_CLIENT_KEY= "dapat client key di https://dashboard.sandbox.midtrans.com/settings/config_info"
+    MIDTRANS_SERVER_KEY="dapat server key di https://dashboard.sandbox.midtrans.com/settings/config_info"
+    MIDTRANS_IS_PRODUCTION=false
+    MIDTRANS_IS_SANITIZED=true
+    MIDTRANS_IS_3DS=true
+    ```
+
+8. **Generate an application key:**
 
     ```bash
     php artisan key:generate
     ```
 
-6. **Jalankan migrasi:**
+9. **Jalankan migrasi:**
 
     ```bash
     php artisan migrate
     ```
 
-7. **Isi database (opsional):**
+10. **Isi database (opsional):**
 
     ```bash
     php artisan db:seed
     ```
 
-8. **Mulai server pengembangan:**
+11. **Mulai server pengembangan:**
 
     ```bash
     php artisan serve
+    ```
+
+12. **Lakukan simulasi pembayaran pada laman berikut dengan cara copy image address QRIS kemudin paste pada laman berikut:**
+
+    ```bash
+    https://simulator.sandbox.midtrans.com/qris/index
     ```
 
 Aplikasi Anda sekarang seharusnya berjalan di [http://localhost:8000](http://localhost:8000).
@@ -89,6 +118,7 @@ Aplikasi Anda sekarang seharusnya berjalan di [http://localhost:8000](http://loc
 - **MySQL**: Database relasional untuk menyimpan data aplikasi.
 - **Bootstrap 4**: Framework CSS untuk desain responsif.
 - **JWT (JSON Web Token)**: Sistem otentikasi untuk API.
+- **Midtrans (Payment Gateway)**: Sistem payment otomatis.
 
 
 # Support Me
