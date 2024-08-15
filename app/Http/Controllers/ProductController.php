@@ -63,11 +63,6 @@ class ProductController extends Controller
             'nama_barang' => 'required',
             'harga' => 'required',
             'diskon' => 'required',
-            'bahan' => 'required',
-            'tags' => 'required',
-            'sku' => 'required',
-            'ukuran' => 'required',
-            'warna' => 'required',
             'gambar' => 'required',
             'deskripsi' => 'required',
             'gambar' => 'required|image|mimes:jpg,png,jpeg,webp'
@@ -137,11 +132,6 @@ class ProductController extends Controller
             'nama_barang' => 'required',
             'harga' => 'required',
             'diskon' => 'required',
-            'bahan' => 'required',
-            'tags' => 'required',
-            'sku' => 'required',
-            'ukuran' => 'required',
-            'warna' => 'required',
             'gambar' => 'required',
             'deskripsi' => 'required',
             'gambar' => 'required|image|mimes:jpg,png,jpeg,webp'
